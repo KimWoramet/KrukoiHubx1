@@ -172,8 +172,8 @@ function library:CreateWindow(name, version, icon, hidebutton)
 	end)
 	
 	UIS.InputBegan:Connect(function(key)
-			if key.KeyCode == window.hidebutton then
-				window.Visible = not window.Visible
+			if key.KeyCode == hidebutton then
+				Window.Visible = not Window.Visible
 			end
 		end)
 
