@@ -170,12 +170,12 @@ function library:CreateWindow(name, version, icon, hidebutton)
 			end
 		end
 	end)
-	
-	UIS.InputBegan:Connect(function(key)
-			if key.KeyCode == hidebutton then
-				library.Visible = not library.Visible
-			end
-		end)
+
+UIS.InputBegan:Connect(function(key)
+	if key.KeyCode == window.hidebutton then
+		window.Visible = not window.Visible
+	end
+end)
 
 
 	function dragify(Frame)
