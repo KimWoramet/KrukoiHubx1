@@ -460,8 +460,7 @@ function DiscordLib:Window(text)
 	CloseSettingsBtnIcon.ImageColor3 = Color3.fromRGB(222, 222, 222)
 	
 	CloseSettingsBtn.MouseButton1Click:Connect(function()
-			if io.KeyCode == Enum.KeyCode.RightControl then
-		settingsopened == false  then
+		settingsopened = false
 		TopFrameHolder.Visible = false
 		ServersHoldFrame.Visible = false
 		SettingsHolder:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
@@ -491,7 +490,7 @@ function DiscordLib:Window(text)
 	
 	UserInputService.InputBegan:Connect(
 		function(io, p)
-			if io.KeyCode == Enum.KeyCode.nill then
+			if io.KeyCode == Enum.KeyCode.NUM1 then
 				if settingsopened == true then
 					settingsopened = false
 					TopFrameHolder.Visible = true
