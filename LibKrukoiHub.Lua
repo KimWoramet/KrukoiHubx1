@@ -460,9 +460,10 @@ function DiscordLib:Window(text)
 	CloseSettingsBtnIcon.ImageColor3 = Color3.fromRGB(222, 222, 222)
 	
 	CloseSettingsBtn.MouseButton1Click:Connect(function()
-		settingsopened = false
-		TopFrameHolder.Visible = true
-		ServersHoldFrame.Visible = true
+			if io.KeyCode == Enum.KeyCode.RightControl then
+		settingsopened == false  then
+		TopFrameHolder.Visible = false
+		ServersHoldFrame.Visible = false
 		SettingsHolder:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 		TweenService:Create(
 			Settings,
@@ -477,7 +478,7 @@ function DiscordLib:Window(text)
 			):Play()
 		end
 		wait(.3)
-		SettingsFrame.Visible = false
+		SettingsFrame.Visible = true
 	end)
 	
 	CloseSettingsBtn.MouseEnter:Connect(function()
@@ -490,11 +491,11 @@ function DiscordLib:Window(text)
 	
 	UserInputService.InputBegan:Connect(
 		function(io, p)
-			if io.KeyCode == Enum.KeyCode.RightControl then
+			if io.KeyCode == Enum.KeyCode.nill then
 				if settingsopened == true then
 					settingsopened = false
-					TopFrameHolder.Visible = false
-					ServersHoldFrame.Visible = false
+					TopFrameHolder.Visible = true
+					ServersHoldFrame.Visible = true
 					SettingsHolder:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 					TweenService:Create(
 						Settings,
@@ -509,7 +510,7 @@ function DiscordLib:Window(text)
 						):Play()
 					end
 					wait(.3)
-					SettingsFrame.Visible = true
+					SettingsFrame.Visible = false
 				end
 			end
 		end
