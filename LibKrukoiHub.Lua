@@ -12,7 +12,7 @@ function library:CreateWindow(name, version, icon, hidebutton)
 	name = name or "Name"
 	version = version or "Version"
 	icon = icon or math.random()
-	hidebutton.hidebutton = hidebutton or Enum.KeyCode.RightControl
+	hidebutton = hidebutton or Enum.KeyCode.RightControl
 	local MyGui = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
