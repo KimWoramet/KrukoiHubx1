@@ -493,8 +493,8 @@ function DiscordLib:Window(text)
 			if io.KeyCode == Enum.KeyCode.RightControl then
 				if settingsopened == true then
 					settingsopened = false
-					TopFrameHolder.Visible = true
-					ServersHoldFrame.Visible = true
+					TopFrameHolder.Visible = false
+					ServersHoldFrame.Visible = false
 					SettingsHolder:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 					TweenService:Create(
 						Settings,
