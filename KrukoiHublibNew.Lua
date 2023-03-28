@@ -1055,10 +1055,10 @@ function library:Init(key)
         page.BackgroundTransparency = 1.000
         page.BorderSizePixel = 0
         page.Size = UDim2.new(0, 412, 0, 358)
-        page.BottomImage = "http://www.roblox.com/asset/?id=3062506202"
-        page.MidImage = "http://www.roblox.com/asset/?id=3062506202"
+        page.BottomImage = "rbxassetid://12807350888"
+        page.MidImage = "rbxassetid://12807350888"
         page.ScrollBarThickness = 1
-        page.TopImage = "http://www.roblox.com/asset/?id=3062506202"
+        page.TopImage = "rbxassetid://12807350888"
         page.ScrollBarImageColor3 = Color3.fromRGB(159, 115, 255)
         page.Visible = false
         
