@@ -87,19 +87,20 @@ local togglesecerity = section:Toggle{
 end,
 }
 
-local playermore = #game.Players:GetPlayers() > 1
-
-
 spawn(function()
-    while wait() do
-        if _G.SecerityKick then
-            if playermore then --and game.Players.LocalPlayer then
-                game.Players.LocalPlayer:Kick("SecurityKick.")
+    pcall(function()
+        while true do
+            local playermore = #game.Players:GetPlayers() > 1
+            if _G.SecerityKick then
+                if playermore then
+                    game.Players.LocalPlayer:Kick("SecurityKick.")
+                end
             end
-        else
+            wait(1) -- add a delay to avoid spamming the server
         end
-    end
+    end)
 end)
+
 
 local seperator = section:Separator("AutoFarm(TELEPORT)")
 --separator:Set("Separator Set")
