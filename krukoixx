@@ -7,12 +7,16 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = 10;
 })
 
-local watermark = library:Watermark("KrukoiHub | [⚡]SCRATCH SERIES[Official] | StreamSpoof SynapseX Only")
+game.NetworkClient.ChildRemoved:Connect(function()
+    game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+end)
+
+local watermark = library:Watermark("KrukoiHub | SCRATCH SERIES | StreamSpoof SynapseX Only")
 -- watermark:Set("Watermark Set")
 -- watermark:Hide() -- toggles watermark
 
 local main = library:Load{
-    Name = "KrukoiHub x SCRATCH SERIES[Official]",
+    Name = "KrukoiHub x SCRATCH SERIES",
     SizeX = 600,
     SizeY = 650,
     Theme = "Midnight",
@@ -27,6 +31,10 @@ local tab = main:Tab("Main")
 
 local section = tab:Section{
     Name = "Main",
+    Side = "Left"
+}
+local section2 = tab:Section{
+    Name = "Other",
     Side = "Left"
 }
 
@@ -52,6 +60,8 @@ section:Button{
     end
 }
 
+
+
 local virtualUser = game:GetService('VirtualUser')
 
 local toggleautoe = section:Toggle{
@@ -70,7 +80,6 @@ spawn(function()
 			virtualUser:SetKeyDown('0x65')
 			wait(0.2)
             virtualUser:SetKeyUp('0x65')
-        else
         end
     end
 end)
@@ -92,11 +101,15 @@ spawn(function()
         while true do
             local playermore = #game.Players:GetPlayers() > 1
             if _G.SecerityKick then
+                local args = {
+                        [1] = "*"
+                    }
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.MutePlayerRequest:InvokeServer(unpack(args))
                 if playermore then
                     game.Players.LocalPlayer:Kick("SecurityKick.")
                 end
             end
-            wait(1) -- add a delay to avoid spamming the server
+            wait(1)
         end
     end)
 end)
@@ -151,19 +164,21 @@ local stonepos = {
 }
 
 spawn(function()
-    pcall(function()
-        while wait() do
+    while wait() do
+        pcall(function()
+            local rootPart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            local tool1 = game.Players.LocalPlayer.Backpack:FindFirstChild("Pickaxe")
             if _G.FarmStone then
                 for i, posstone in ipairs(stonepos) do
-                    local rootPart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-                    if rootPart then
-                        rootPart.CFrame = CFrame.new(posstone)
+                    if tool1 then
+                        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(tool1)
                     end
+                    rootPart.CFrame = CFrame.new(posstone)
                     wait(0.3)
                 end
             end
-        end
-    end)
+        end)
+    end
 end)
 
 local toggle = section:Toggle{
@@ -187,12 +202,14 @@ local Woodpos = {
 
 spawn(function()
     pcall(function()
+        local rootPartWoods = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local toolwood = game.Players.LocalPlayer.Backpack:FindFirstChild("Pip")
         while wait() do
             if _G.FarmWood then
+                    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(toolwood)
                 for i, poswood in ipairs(Woodpos) do
-                    local rootPart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-                    if rootPart then
-                        rootPart.CFrame = CFrame.new(poswood)
+                    if rootPartWoods then
+                        rootPartWoods.CFrame = CFrame.new(poswood)
                     end
                     wait(0.3)
                 end
@@ -200,6 +217,54 @@ spawn(function()
         end
     end)
 end)
+
+section:Button{
+    Name = "Click to RejoinServer",
+    Callback  = function()
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        ts:Teleport(game.PlaceId, p)
+    end
+}
+
+
+local toggleautoRevive = section2:Toggle{
+    Name = "ReviveAuto",
+    Flag = "If LocalPlayer Die System revive",
+    Default = true,
+    Callback  = function(ReviveFarm)
+        _G.ReviveAuto = ReviveFarm   
+end,
+}
+
+local ReviveSys = "Respawn"
+local PlayerN = game:GetService("Players").LocalPlayer
+local EventRev = game:GetService("ReplicatedStorage").ReviveSystem.Event
+local NotifyScript1 = "Success"
+local NotifyTitle2 = "KrukoiHub"
+local NotifyScript3 = "Auto Revive"
+local Event2 = game:GetService("ReplicatedStorage").pNotifyStorage.pNotifyEvent
+
+spawn(function()
+    while true do
+        pcall(function()
+            if _G.ReviveAuto then
+            wait(1)
+            local character = PlayerN.Character
+            if not character then
+                return
+            end
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid.Health == 0 then
+                Event2:FireServer(NotifyScript1, NotifyTitle2, NotifyScript3)
+                EventRev:FireServer(ReviveSys, PlayerN)
+            end
+        end
+        wait(1)
+        end)
+    end
+end)
+
 
 
 
