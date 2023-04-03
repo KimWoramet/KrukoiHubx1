@@ -151,11 +151,11 @@ local stonepos = {
 }
 
 spawn(function()
-    while wait(0.5) do
+    while wait() do
         if _G.FarmStone then
             for i, posstone in ipairs(stonepos) do
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(posstone)
-                wait(0.5)
+                wait(0.3)
             end
         else
         end
@@ -186,7 +186,7 @@ spawn(function()
         if _G.FarmWood then
             for i, poswood in ipairs(Woodpos) do
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(poswood)
-                wait(0.5)
+                wait(0.3)
             end
         else
         end
