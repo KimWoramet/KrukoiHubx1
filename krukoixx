@@ -43,8 +43,14 @@ local section3 = tab:Section{
     Side = "Right"
 }
 
+local section4 = tab:Section{
+    Name = "SetnamePlayer To Kill",
+    Side = "Right"
+}
+
 local label = section:Label("Speed Interact")
 local label2 = section3:Label("Players")
+local label3 = section4:Label("Input Username wait 7seconds to kill")
 
 --label:Set("Label Set")
 
@@ -344,6 +350,72 @@ section3:Button{
         end
     end
 }
+
+local Teleportlebel = section3:Label("Teleport")
+local Teleportlebel1 = section3:Label("Soon...")
+
+
+
+local playerNameKill = ""
+
+local box = section4:Box{
+    Name = "Addmoney",
+    --Default = "hi",
+    Placeholder = "USERNAME",
+    Flag = "Box 1",
+    Callback = function(input)
+        playerNameKill = input
+    end,
+}
+
+local toggle = section4:Toggle{
+    Name = "AddMoney x10000",
+    Flag = "",
+    --Default=true,
+    Callback = function(killx10)
+        _G.killx10 = killx10
+    end,
+}
+
+local KillSys = "Respawn"
+local EventRevkill = game:GetService("ReplicatedStorage").ReviveSystem.Event
+local NotifyScript1 = "Success"
+local NotifyTitle2 = "KrukoiHub"
+local NotifyScript3 = "Add Money x10000"
+local EventKill = game:GetService("ReplicatedStorage").pNotifyStorage.pNotifyEvent
+
+spawn(function()
+    while wait(7) do
+        pcall(function()
+            if _G.killx10 and playerNameKill ~= "" then
+                local SetNamePlayers = game:GetService("Players"):FindFirstChild(playerNameKill)
+                if SetNamePlayers then
+                    game.StarterGui:SetCore("SendNotification", {
+                        Title = "KrukoiHub"; 
+                        Text = "Starting in 7seconds"; 
+                        Icon = "rbxassetid://12983051832";
+                        Duration = 10;
+                    })
+                    --[[for i=1, 10 do
+                        EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    end]]
+                    EventKill:FireServer(NotifyScript1, NotifyTitle2, NotifyScript3)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                    EventRevkill:FireServer(KillSys, SetNamePlayers)
+                end
+            end
+        end)
+    end
+end)
+
 
 
 --[[local keybind = section:Keybind{
