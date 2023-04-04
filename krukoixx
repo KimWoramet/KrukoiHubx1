@@ -201,22 +201,79 @@ local Woodpos = {
 }
 
 spawn(function()
+    while wait() do
     pcall(function()
         local rootPartWoods = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         local toolwood = game.Players.LocalPlayer.Backpack:FindFirstChild("Pip")
-        while wait() do
             if _G.FarmWood then
-                    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(toolwood)
                 for i, poswood in ipairs(Woodpos) do
-                    if rootPartWoods then
-                        rootPartWoods.CFrame = CFrame.new(poswood)
+                    if toolwood then
+                        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(toolwood)
                     end
+                        rootPartWoods.CFrame = CFrame.new(poswood)
                     wait(0.3)
                 end
             end
-        end
-    end)
+        end)
+    end
 end)
+
+local toggle = section:Toggle{
+    Name = "Cow & Pig",
+    Flag = "Teleport To Cow&Pig",
+    --Default = true,
+    Callback  = function(meet)
+        _G.FarmMeet = meet
+end,
+}
+
+local Meetpos = {
+    --pig
+    Vector3.new(2884.398681640625, 29.16751480102539, 1497.4835205078125),
+    Vector3.new(2891.30029296875, 29.867515563964844, 1503.2984619140625),
+    Vector3.new(2898.13232421875, 29.173513412475586, 1509.9315185546875),
+    Vector3.new(2902.99658203125, 29.16751480102539, 1516.5201416015625),
+    Vector3.new(2911.24853515625, 29.16751480102539, 1522.095947265625),
+    Vector3.new(2916.792236328125, 29.16751480102539, 1529.6190185546875),
+    Vector3.new(2924.05029296875, 29.16751480102539, 1535.5306396484375),
+    Vector3.new(2931.351318359375, 29.398761749267578, 1541.131103515625),
+    Vector3.new(2938.092529296875, 29.16751480102539, 1547.1881103515625),
+    Vector3.new(2943.651123046875, 29.16751480102539, 1554.4302978515625),
+    --cow
+    Vector3.new(2921.202880859375, 29.16751480102539, 1577.41552734375),
+    Vector3.new(2912.28125, 29.16751480102539, 1568.740234375),
+    Vector3.new(2904.661865234375, 29.1674861907959, 1561.394775390625),
+    Vector3.new(2896.885986328125, 29.16751480102539, 1553.8424072265625),
+    Vector3.new(2889.283203125, 29.16751480102539, 1546.585693359375),
+    Vector3.new(2880.258056640625, 29.167470932006836, 1538.779052734375),
+    Vector3.new(2874.796875, 29.167512893676758, 1532.2159423828125),
+    Vector3.new(2866.94921875, 29.16751480102539, 1524.71435546875),
+    Vector3.new(2861.13525390625, 29.16751480102539, 1518.0433349609375)
+}
+
+spawn(function()
+    while wait() do
+    pcall(function()
+        local rootPartMeets = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local toolmeet = game.Players.LocalPlayer.Backpack:FindFirstChild("Knife")
+            if _G.FarmMeet then
+                for i, posmeet in ipairs(Meetpos) do
+                    if toolmeet then
+                        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(toolmeet)
+                    end
+                        rootPartMeets.CFrame = CFrame.new(posmeet)
+                        wait(0.3)
+                    end
+                end
+            end)
+        end
+end)
+
+
+
+
+
+
 
 section:Button{
     Name = "Click to RejoinServer",
