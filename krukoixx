@@ -328,7 +328,6 @@ spawn(function()
     end
 end)
 local KillallTitle = "Respawn"
-local KillallGetPlayer = game:GetService("Players"):GetPlayers()
 local KillAllGetEvent = game:GetService("ReplicatedStorage").ReviveSystem.Event
 local NotifyTitle1 = "Success"
 local NotifyTitle2 = "KrukoiHub"
@@ -338,13 +337,13 @@ local Event2 = game:GetService("ReplicatedStorage").pNotifyStorage.pNotifyEvent
 section3:Button{
     Name = "Kill All Players",
     Callback  = function()
+        local KillallGetPlayer = game:GetService("Players"):GetPlayers()
         for i, player in ipairs(KillallGetPlayer) do
             KillAllGetEvent:FireServer(KillallTitle, player)
             Event2:FireServer(NotifyTitle1, NotifyTitle2, NotifyScript3)
         end
     end
 }
-
 
 
 --[[local keybind = section:Keybind{
