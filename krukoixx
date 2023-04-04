@@ -210,7 +210,7 @@ spawn(function()
     while wait() do
     pcall(function()
         local rootPartWoods = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local toolwood = game.Players.LocalPlayer.Backpack:FindFirstChild("Pip")
+        local toolwood = game.Players.LocalPlayer.Backpack:FindFirstChild("Pib")
             if _G.FarmWood then
                 for i, poswood in ipairs(Woodpos) do
                     if toolwood then
